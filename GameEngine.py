@@ -26,7 +26,7 @@ class GameEngine:
             data = [*csv.reader(fo)]
 
         _, dim1, dim2 = data.pop(0)
-        self.initField(dim1, dim2)
+        self.field_init(dim1, dim2)
 
         for name, symbol, points in data:
             self.add_veggie_possible(name, symbol, points)
@@ -70,9 +70,8 @@ class GameEngine:
     def highScore(self):
         pass
 
-    def initField(self, dim1: int, dim2: int) -> None:
-        for _ in range(dim1):
-            self.__field.append([None for _ in range(dim2)])
+    def field_init(self, dim1: int, dim2: int) -> None:
+        self.__filed = [[None for _ in range(dim2)] for _ in range(dim1)]
 
     def add_veggie_possible(self, name: str, symbol: str, points: int) -> None:
         self.__veggies_possible.append(Veggie(symbol, name, points))
