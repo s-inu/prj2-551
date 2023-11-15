@@ -2,6 +2,7 @@
 *.txt
 *.pdf
 *.csv
+draft.*
 
 .vscode/
 .idea/

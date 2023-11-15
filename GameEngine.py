@@ -24,12 +24,14 @@ class GameEngine:
 
         with open(veggie_filename, "w") as fo:
             data = [*csv.reader(fo)]
+            data = list(csv.reader(fo))
 
         _, dim1, dim2 = data.pop(0)
         self.field_init(dim1, dim2)
 
         for name, symbol, points in data:
             self.add_veggie_possible(name, symbol, points)
+
 
     def initCaptain(self):
         pass
