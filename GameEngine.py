@@ -31,43 +31,43 @@ class GameEngine:
         for name, symbol, points in data:
             self.add_veggie_possible(name, symbol, points)
 
-    def initCaptain():
+    def initCaptain(self):
         pass
 
-    def initRabbits():
+    def initRabbits(self):
         pass
 
-    def initializeGame():
+    def initializeGame(self):
         pass
 
-    def remainingVeggies():
+    def remainingVeggies(self):
         pass
 
-    def intro():
+    def intro(self):
         pass
 
-    def printField():
+    def printField(self):
         pass
 
-    def getScore():
+    def getScore(self):
         pass
 
-    def moveRabbits():
+    def moveRabbits(self):
         pass
 
-    def moveCptVertical():
+    def moveCptVertical(self):
         pass
 
-    def moveCptHorizontal():
+    def moveCptHorizontal(self):
         pass
 
-    def moveCaptain():
+    def moveCaptain(self):
         pass
 
-    def gameOver():
+    def gameOver(self):
         pass
 
-    def highScore():
+    def highScore(self):
         pass
 
     def initField(self, dim1: int, dim2: int) -> None:
