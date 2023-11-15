@@ -8,13 +8,13 @@ class Creature(FieldInhabitant):
         self.set_y(y)
 
     def get_x(self) -> int:
-        return self.__x
+        return self._x
 
     def set_x(self, x: int) -> None:
-        self.__x = x
+        self._x = x
 
     def get_y(self) -> int:
-        return self.__x
+        return self._y
 
     def set_y(self, y: int) -> None:
-        self.__y = y
+        self._y = y
