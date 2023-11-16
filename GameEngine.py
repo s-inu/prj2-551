@@ -154,7 +154,7 @@ class GameEngine:
             elif action == 7:
                 self.moveCreature(rabbit, 1, -1)
             elif action == 8:
-                self.moveCreature(rabbit, -1, 1)
+                self.moveCreature(rabbit, -1, -1)
 
     def moveCptVertical(self, step):
         res = self.moveCreature(self.__captain, 0, step)
@@ -209,14 +209,14 @@ class GameEngine:
                 scorelist = pickle.load(file)
                 for score in scorelist:
                     scores.append(score)
-        name = input("Please enter your three initials to go on the scoreboard: ")
+        newname = input("Please enter your three initials to go on the scoreboard: ")
         index = 0
         for pair in scores:
             name, score = pair
             if score < self.getScore():
                 break
             index += 1
-        scores.insert(index, (name[0 : min(len(name), 3)], self.getScore()))
+        scores.insert(index, (newname[0 : min(len(newname), 3)], self.getScore()))
 
         print("HIGH SCORES")
         print("Name    Score")
