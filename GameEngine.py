@@ -20,10 +20,10 @@ class GameEngine:
         self.__veggies_possible = []
 
     def findSpace(self):
-        x = random.randint(0, len(self.__field[0] - 1))
+        x = random.randint(0, len(self.__field[0])-1)
         y = random.randint(0, len(self.__field) - 1)
         while self.__field[y][x] != None:
-            x = random.randint(0, len(self.__field[0] - 1))
+            x = random.randint(0, len(self.__field[0]) - 1)
             y = random.randint(0, len(self.__field) - 1)
         return (x, y)
 
@@ -87,7 +87,7 @@ class GameEngine:
                 + ": "
                 + veggie.get_name()
                 + " "
-                + str(veggie.get_points() + " points")
+                + str(veggie.get_points()) + " points"
             )
         print("\nCaptain Veggie is V, and the rabbits are R's.\n\nGood Luck!")
 
@@ -98,13 +98,14 @@ class GameEngine:
             print("\n#", end="")
             for obj in row:
                 if obj != None:
-                    print(" " + obj.get_inhabitant() + " ")
+                    print(" " + obj.get_inhabitant() + " ",end="")
                 else:
-                    print("   ")
+                    print("   ",end="")
             print("#", end="")
-        print("\n")
+        print("")
         for i in range(3 * len(self.__field[0]) + 2):
             print("#", end="")
+        print("")
 
     def getScore(self):
         return self.__score
@@ -114,7 +115,7 @@ class GameEngine:
         y = creature.get_y()
         x += mx
         y += my
-        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field):
+        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field)-1:
             return "Wall"
         else:
             if self.__field[y][x] == None:
@@ -126,7 +127,6 @@ class GameEngine:
                 tempVeggie = self.__field[y][x]
                 creature.set_x(x)
                 creature.set_y(y)
-                self.__veggies.remove(self.__field[y][x])
                 self.__field[y][x] = creature
                 self.__field[y - my][x - mx] = None
                 return tempVeggie
@@ -185,9 +185,9 @@ class GameEngine:
             "Would you like to move up(W), down(S), left(A), or right(D): "
         )
         if direction.lower() == "w":
-            self.moveCptVertical(1)
-        elif direction.lower() == "s":
             self.moveCptVertical(-1)
+        elif direction.lower() == "s":
+            self.moveCptVertical(1)
         elif direction.lower() == "a":
             self.moveCptHorizontal(-1)
         elif direction.lower() == "d":
@@ -200,7 +200,7 @@ class GameEngine:
         print("You managed to harvest the following vegetables:")
         for veggie in self.__veggies:
             print(veggie.get_name())
-        print("Your score was: " + self.getScore())
+        print("Your score was: " + str(self.getScore()))
 
     def highScore(self):
         scores = []
@@ -222,13 +222,13 @@ class GameEngine:
         print("Name    Score")
         for pair in scores:
             name, score = pair
-            print(name.ljest(17) + str(score))
+            print(name.ljust(17) + str(score))
 
-        with open(self.__HIGHSCOREFILE, "rw") as file:
+        with open(self.__HIGHSCOREFILE, "wb") as file:
             pickle.dump(scores, file)
 
     def field_init(self, dim1: int, dim2: int) -> None:
-        self.__filed = [[None for _ in range(dim2)] for _ in range(dim1)]
+        self.__field = [[None for _ in range(dim2)] for _ in range(dim1)]
 
     def add_veggie_possible(self, name: str, symbol: str, points: int) -> None:
         self.__veggies_possible.append(Veggie(symbol, name, points))

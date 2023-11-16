@@ -7,7 +7,7 @@ def main():
     gameEngine.intro()
     count=gameEngine.remainingVeggies()
     while count>0:
-        print(str(count)+" veggies remaining. Current score: "+gameEngine.getScore())
+        print(str(count)+" veggies remaining. Current score: "+str(gameEngine.getScore()))
         gameEngine.printField()
         gameEngine.moveRabbits()
         gameEngine.moveCaptain()
