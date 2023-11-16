@@ -37,7 +37,6 @@ class GameEngine:
 
         with open(veggie_filename, "r") as fo:
             data = [*csv.reader(fo)]
-
         _, dim1, dim2 = data.pop(0)
         self.field_init(dim1, dim2)
 
