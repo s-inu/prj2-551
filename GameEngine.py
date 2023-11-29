@@ -20,7 +20,7 @@ class GameEngine:
         self.__veggies_possible = []
 
     def findSpace(self):
-        x = random.randint(0, len(self.__field[0]) - 1)
+        x = random.randint(0, len(self.__field[0])-1)
         y = random.randint(0, len(self.__field) - 1)
         while self.__field[y][x] is not None:
             x = random.randint(0, len(self.__field[0]) - 1)
@@ -57,7 +57,7 @@ class GameEngine:
             (x, y) = self.findSpace()
             rabbit = Rabbit(x, y)
             self.__field[y][x] = rabbit
-            self._rabbits.append(rabbit)
+            self.__rabbits.append(rabbit)
 
     def initializeGame(self):
         self.initVeggies()
@@ -87,8 +87,7 @@ class GameEngine:
                 + ": "
                 + veggie.get_name()
                 + " "
-                + str(veggie.get_points())
-                + " points"
+                + str(veggie.get_points()) + " points"
             )
         print("\nCaptain Veggie is V, and the rabbits are R's.\n\nGood Luck!")
 
@@ -99,9 +98,9 @@ class GameEngine:
             print("\n#", end="")
             for obj in row:
                 if obj is not None:
-                    print(" " + obj.get_inhabitant() + " ", end="")
+                    print(" " + obj.get_inhabitant() + " ",end="")
                 else:
-                    print("   ", end="")
+                    print("   ",end="")
             print("#", end="")
         print("")
         for i in range(3 * len(self.__field[0]) + 2):
@@ -116,7 +115,7 @@ class GameEngine:
         y = creature.get_y()
         x += mx
         y += my
-        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field) - 1:
+        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field)-1:
             return "Wall"
         else:
             if self.__field[y][x] is None:
@@ -136,7 +135,7 @@ class GameEngine:
         return None
 
     def moveRabbits(self):
-        for rabbit in self._rabbits:
+        for rabbit in self.__rabbits:
             action = random.randint(0, 8)
             if action == 0:
                 continue
