@@ -14,15 +14,15 @@ class GameEngine:
     __HIGHSCOREFILE = "highscore.data"
 
     def __init__(self) -> None:
-        self.__field, self._rabbits, self.__veggies = [], [], []
+        self.__field, self.__rabbits, self.__veggies = [], [], []
         self.__captain = None
         self.__score = 0
         self.__veggies_possible = []
 
     def findSpace(self):
-        x = random.randint(0, len(self.__field[0])-1)
+        x = random.randint(0, len(self.__field[0]) - 1)
         y = random.randint(0, len(self.__field) - 1)
-        while self.__field[y][x] != None:
+        while self.__field[y][x] is not None:
             x = random.randint(0, len(self.__field[0]) - 1)
             y = random.randint(0, len(self.__field) - 1)
         return (x, y)
@@ -87,7 +87,8 @@ class GameEngine:
                 + ": "
                 + veggie.get_name()
                 + " "
-                + str(veggie.get_points()) + " points"
+                + str(veggie.get_points())
+                + " points"
             )
         print("\nCaptain Veggie is V, and the rabbits are R's.\n\nGood Luck!")
 
@@ -97,10 +98,10 @@ class GameEngine:
         for row in self.__field:
             print("\n#", end="")
             for obj in row:
-                if obj != None:
-                    print(" " + obj.get_inhabitant() + " ",end="")
+                if obj is not None:
+                    print(" " + obj.get_inhabitant() + " ", end="")
                 else:
-                    print("   ",end="")
+                    print("   ", end="")
             print("#", end="")
         print("")
         for i in range(3 * len(self.__field[0]) + 2):
@@ -115,10 +116,10 @@ class GameEngine:
         y = creature.get_y()
         x += mx
         y += my
-        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field)-1:
+        if x < 0 or x > len(self.__field[0]) - 1 or y < 0 or y > len(self.__field) - 1:
             return "Wall"
         else:
-            if self.__field[y][x] == None:
+            if self.__field[y][x] is None:
                 creature.set_x(x)
                 creature.set_y(y)
                 self.__field[y][x] = creature
@@ -158,7 +159,7 @@ class GameEngine:
 
     def moveCptVertical(self, step):
         res = self.moveCreature(self.__captain, 0, step)
-        if res != None:
+        if res is not None:
             if isinstance(res, Veggie):
                 print("Yummy! A delicious " + res.get_name())
                 self.__veggies.append(res)
@@ -170,7 +171,7 @@ class GameEngine:
 
     def moveCptHorizontal(self, step):
         res = self.moveCreature(self.__captain, step, 0)
-        if res != None:
+        if res is not None:
             if isinstance(res, Veggie):
                 print("Yummy! A delicious " + res.get_name())
                 self.__veggies.append(res)
