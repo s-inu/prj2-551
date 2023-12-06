@@ -287,10 +287,13 @@ class GameEngine:
                 )  # General case for other encounters
 
         # Handle successful movement, especially when encountering a vegetable
-        if ok and isinstance(encountered, Veggie):
-            print(
-                f"Yummy! A delicious {encountered.get_name()}"
-            )  # Celebrate encountering a vegetable
+        if ok:
+            if isinstance(encountered, Veggie):
+                print(
+                    f"Yummy! A delicious {encountered.get_name()}"
+                )  # Celebrate encountering a vegetable
+            elif isinstance(encountered, Snake):
+                print("Attacked by snake.")
 
         # if direction == "w":
         #     self.moveCptVertical(-1)
@@ -586,7 +589,11 @@ class GameEngine:
     ) -> Tuple[Snake, bool]:
         # Handle an encounter with a snake
         if isinstance(subject, Captain):
-            return snake, False  # Captain encounters snake, no movement
+            veggies_lost = subject.lose_veggie(5)
+            points_lost = sum(veggie.get_points() for veggie in veggies_lost)
+            self.__score -= points_lost  # Deduct points for lost veggies
+            self.initSnake()  # Reinitialize the snake
+            return snake, True  # Captain encounters snake
         if isinstance(subject, Rabbit):
             return snake, False  # Rabbit encounters snake, no movement
         if isinstance(subject, Snake):
